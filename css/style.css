@@ -557,7 +557,7 @@ a {
     font-size: 18px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .section {
         padding: 40px
     }
@@ -569,7 +569,7 @@ a {
     .nav-bar {
         flex-direction: column;
         align-items: center;
-        gap: 16px;
+        gap: 8px;
         padding: 16px;
     }
 
@@ -592,8 +592,10 @@ a {
         text-align: center;
     }
 
-    .hero-copy h1 {
+    .hero-copy {
         font-size: 24px;
+        padding: 16px;
+        text-align: center;
     }
 
     .hero-copy p {
@@ -605,17 +607,34 @@ a {
         gap: 20px;
     }
 
+    .usp-card {
+        padding: 12px;
+        text-align: center;
+    }
+
     .cards-grid.cards-3 {
         grid-template-columns: 1fr;
         gap: 24px;
     }
 
+    .cards-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
     .product-image {
         height: auto;
+        padding: 8px;
     }
 
     .product-info {
-        padding: 12px;
+        padding: 10px;
+    }
+
+    .product-detail-grid {
+        flex-direction: column;
+        gap: 16px;
     }
 
     .lifestyle-grid {
@@ -632,11 +651,77 @@ a {
 
     .footer-links {
         flex-direction: column;
-        gap: 12px;
+        gap: 8px;
         text-align: center;
+        align-items: center;
     }
 
     footer p {
         text-align: center;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .nav-bar {
+        gap: 12px;
+    }
+
+    .hero-copy {
+        margin-right: 16px;
+        padding: 0 20px;
+    }
+
+    .usp-card {
+        padding: 20px 16px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2 1fr);
+        gap: 20px;
+    }
+
+    .product-detail-grid {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .nav-bar {
+        gap: 24px;
+    }
+
+    .hero-copy {
+        margin-right: 40px;
+        padding: 0;
+    }
+
+    .usp-card {
+        padding: 28px 20px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+
+    .product-detail-grid {
+        flex-direction: row;
+        gap: 32px;
+    }
+
+    .footer-links {
+        flex-wrap: nowrap;
+        gap: 24px;
     }
 }
