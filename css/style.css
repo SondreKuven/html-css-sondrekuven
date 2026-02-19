@@ -511,6 +511,37 @@ a {
     margin-top: 20px;
 }
 
+.checkout-item {
+    display: grid;
+    grid-template-columns: 70px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  }
+  
+  .checkout-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .checkout-title {
+    font-size: 1.1rem;
+    margin: 0 0 4px 0;
+  }
+  
+  .checkout-meta {
+    margin: 0;
+    opacity: 0.8;
+  }
+  
+  .checkout-price {
+    font-weight: 600;
+  }
+  
+
 
 .confirmation h1 {
     text-align: center;

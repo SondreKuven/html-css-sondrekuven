@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Explore our collection of durable jackets for your next adventure.">
         <title>Rainy Days | Products</title>
         <link rel="stylesheet" href="css/style.css">
@@ -40,85 +40,23 @@
 
             <section class="featured section">
                 <div class="container">
-                    <div class="cards-grid cards-3">
-                        <article class="card product-card">
-                            <div class="product-image">
-                                <img src="images/RainyDays_Jacket2.jpg" alt="Scott Running Jacket">
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-title">Scott Running</h3>
-                                <p class="price">1000,-</p>
-                                <a href="product.html" class="btn btn-small">View Product</a>
-                            </div>
-                        </article>
+                    <div class="filters">
+                        <select id="genderFilter">
+                            <option value="">All Genders</option>
+                        </select>
 
-                        <article class="card product-card">
-                            <div class="product-image">
-                                <img src="images/RainyDays_Jacket1.jpg" alt="1st Watch">
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-title">1st Watch</h3>
-                                <p class="price">2000,-</p>
-                                <a href="product.html" class="btn btn-small">View Product</a>
-                            </div>
-                        </article>
+                        <select id="tagFilter">
+                            <option value="">All Tags</option>
+                        </select>
 
-                        <article class="card product-card">
-                            <div class="product-image">
-                                <img src="images/RainyDays_Jacket3.jpg" alt="Red Skiing Jacket">
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-title">Red skiing jacket</h3>
-                                <p class="price">900,-</p>
-                                <a href="product.html" class="btn btn-small">View Product</a>
-                            </div>
-                        </article>
+                        <input id="searchFilter" type="search" placeholder="Search product...">
 
-                        <article class="card product-card">
-                            <div class="product-image">
-                                <img src="images/RainyDays_Jacket4.jpg" alt="Scott skiing">
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-title">Scott skiing</h3>
-                                <p class="price">1300,-</p>
-                                <a href="product.html" class="btn btn-small">View Product</a>
-                            </div>
-                        </article>
-
-                        <article class="card product-card">
-                            <div class="product-image">
-                                <img src="images/RainyDays_Jacket5.jpg" alt="XM Xtreme Jacket">
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-title">XM Xtreme</h3>
-                                <p class="price">1200,-</p>
-                                <a href="product.html" class="btn btn-small">View Product</a>
-                            </div>
-                        </article>
-
-                        <article class="card product-card">
-                            <div class="product-image">
-                                <img src="images/RainyDays_Jacket6.jpg" alt="Scott hiking">
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-title">Scott hiking</h3>
-                                <p class="price">1500,-</p>
-                                <a href="product.html" class="btn btn-small">View Product</a>
-                            </div>
-                        </article>
-
-                        <article class="card product-card">
-                            <div class="product-image">
-                                <img src="images/RainyDays_Jacket7.jpg" alt="Patagonia green fleece">
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-title">Patagonia green fleece</h3>
-                                <p class="price">800,-</p>
-                                <a href="product.html" class="btn btn-small">View Product</a>
-                            </div>
-                        </article>
+                        <button id="clearFilter" type="button">Clear</button>
                     </div>
-                </div>
+
+                    <div id="productGrid" class="cards-grid cards-3"></div>
+
+                    <p id="productMessage" role="status" aria-live="polite"></p>
             </section>
         </main>
 
@@ -132,6 +70,9 @@
                 </div>
                 <p class="copyright">© 2025 Rainy Days</p>
             </div>
-        </footer>    
+        </footer>
+
+        <script type="module" src="js/products.mjs"></script>
+
     </body>
 </html>

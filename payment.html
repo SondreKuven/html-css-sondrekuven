@@ -34,18 +34,11 @@
         <main>
             <section class="payment section">
                 <div class="container">
-                    <h1 class="section-title">Payment details</h1>
-                    <form class="payment-form">
-                        <input type="text" placeholder="Name on card" required>
-                        <input type="text" placeholder="Card number" required>
-                        <div class="split-inputs">
-                            <input type="text" placeholder="(MM/YY)" required>
-                            <input type="text" placeholder="CVC" required>
-                        </div>
-                        <input type="text" placeholder="Billing address" required>
-                        <input type="text" placeholder="Country" required>
-                        <a href="confirmation.html" class="btn btn-primary">Place Order</a>
-                    </form>
+                    <div id="checkoutSummary"></div>
+                    <p><strong>Total:</strong> <span id="checkoutTotal">0.00</span></p>
+                    <p id="checkoutMessage" aria-live="polite"></p>
+
+                    <button type="button" id="placeOrderBtn" class="btn btn-primary">Place Order</button>
                 </div>
             </section>
         </main>
@@ -61,5 +54,8 @@
                 <p class="copyright">© 2025 Rainy Days</p>
             </div>
         </footer>
+
+        <script type="module" src="js/checkout.mjs"></script>
+        
     </body>
 </html>
