@@ -32,7 +32,7 @@ function renderFeatured(products) {
                 <div class="product-info">
                     <h2 class="product-title">${escapeHtml(p.title)}</h2>
                     <p class="price">${price} €</p>
-                    <a href="product.html?id=${id}" class="btn btn-secondary">View details</a>
+                    <a href="product.html?id=${encodeURIComponent(id)}" class="btn btn-secondary">View details</a>
                 </div>
             </article>
         `;
@@ -45,7 +45,7 @@ function setMessage(text) {
 }
 
 function escapeHtml(str) {
-    return str.replace(/[&<>"']/g, (c) => ({
+    return String(str).replace(/[&<>"']/g, (c) => ({
         "&": "&amp;",
         "<": "&lt;",
         ">": "&gt;",

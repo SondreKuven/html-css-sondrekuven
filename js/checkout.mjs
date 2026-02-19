@@ -16,7 +16,7 @@ placeOrderBtn.addEventListener("click", () => {
     }
 
     const order = {
-        orderNumber: crypto.randomUUID().slice("-")[0, 8].toUpperCase(),
+        orderNumber: crypto.randomUUID().slice(0, 8).toUpperCase(),
         items: cart,
         total: cartSubtotal(cart),
         createdAt: new Date().toISOString(),
@@ -51,7 +51,6 @@ function renderCheckout() {
                 <p class="checkout-meta">
                     ${item.size ? `Size: ${item.size} &nbsp;` : ""}
                     Qty: ${item.quantity}
-                    ${Number(item.price).toFixed(2)} &nbsp;
                 </p>
             </div>
 

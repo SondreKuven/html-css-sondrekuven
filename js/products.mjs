@@ -50,8 +50,6 @@ function applyFilters() {
 
     renderProducts(filtered);
 
-    setMessage(`${filtered.length} product(s) found.`);
-
     if (filtered.length === 0) setMessage("No products match your filters.");
     else setMessage("");
 }
@@ -76,6 +74,7 @@ function renderProducts(products) {
     grid.innerHTML = products
         .map((p) => {
             const price = (p.discountedPrice ?? p.price).toFixed(2);
+            const id = p.id ?? p._id;
             return `
                 <article class="card product-card">
                     <div class="product-image">

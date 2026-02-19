@@ -1,5 +1,5 @@
 import { fetchProductById } from "./api.mjs";
-import { addToCart, getCart } from "./cartStorage.mjs";
+import { addToCart } from "./cartStorage.mjs";
 
 const detail = document.querySelector("#productDetail");
 const message = document.querySelector("#productMessage");

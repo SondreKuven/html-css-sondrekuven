@@ -17,7 +17,7 @@ function renderConfirmation() {
     message.textContent ="";
 
     box.innerHTML = `
-        <h1>Order confirmed!</h1>
+        <h1>Thank you for ordering!</h1>
         <p><strong>Order number:</strong> ${escapeHtml(order.orderNumber)}</p>
         <p><strong>Order date:</strong> ${new Date(order.createdAt).toLocaleString()}</p>
         
