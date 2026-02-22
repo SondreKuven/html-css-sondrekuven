@@ -70,7 +70,7 @@ function renderProduct(p) {
         setMessage("");
         addedMessage.innerHTML = `
             Product added to cart!
-            <a class="btn btn-small" href="cart.html">View Cart</a>
+            <a class="btn btn-small" href="../cart.html">View Cart</a>
         `;
     });
 }

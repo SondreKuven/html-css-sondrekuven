@@ -32,7 +32,7 @@ function renderFeatured(products) {
                 <div class="product-info">
                     <h2 class="product-title">${escapeHtml(p.title)}</h2>
                     <p class="price">${price} €</p>
-                    <a href="product.html?id=${encodeURIComponent(id)}" class="btn btn-secondary">View details</a>
+                    <a href="product/index.html?id=${encodeURIComponent(id)}" class="btn btn-secondary">View details</a>
                 </div>
             </article>
         `;

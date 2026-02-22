@@ -24,7 +24,7 @@ placeOrderBtn.addEventListener("click", () => {
 
     sessionStorage.setItem("last_order", JSON.stringify(order));
     clearCart();
-    location.href = "confirmation.html";
+    location.href = "confirmation/index.html";
 });
 
 function renderCheckout() {

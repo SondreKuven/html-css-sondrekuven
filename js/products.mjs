@@ -83,7 +83,7 @@ function renderProducts(products) {
                     <div class="product-info">
                         <h3 class="product-title">${escapeHtml(p.title)}</h3>
                         <p class="price">${price}€</p>
-                        <a href="product.html?id=${encodeURIComponent(p.id)}" class="btn btn-small">
+                        <a href="product/index.html?id=${encodeURIComponent(id)}" class="btn btn-small">
                             View products
                         </a>
                     </div>
