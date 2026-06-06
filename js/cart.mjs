@@ -1,9 +1,14 @@
-import { getCart, removeFromCart, cartSubtotal, updateQuantity } from "./cartStorage.mjs";
+import { getCart, removeFromCart, cartSubtotal } from "./cartStorage.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
     const cartItems = document.querySelector("#cartItems");
     const subtotal = document.querySelector("#cartSubtotal");
     const message = document.querySelector("#cartMessage");
+
+    if (!cartItems || !subtotal || !message) {
+        console.error("One or more required elements (#cartItems, #cartSubtotal, #cartMessage) are missing in the DOM.");
+        return;
+    }
 
     render();
 
@@ -27,10 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p>
                         ${item.size ? `Size: ${item.size} &nbsp;` : ""}
                         ${Number(item.price).toFixed(2)} &nbsp;
-                        <button data-action="dec" data-id="${item.id}" data-size="${item.size ?? ""}">-</button>
                         Qty: ${item.quantity} &nbsp;
-                        <button data-action="inc" data-id="${item.id}" data-size="${item.size ?? ""}">+</button>
-                        <button data-action="remove" data-id="${item.id}" data-size="${item.size ?? ""}" aria-label="Remove item">x</button>
+                        <button data-id="${item.id}" data-size="${item.size ?? ""}" aria-label="Remove item">x</button>
                     </p>
                 </div>
             </div>
@@ -42,12 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.addEventListener("click", () => {
                 const id = btn.dataset.id;
                 const size = btn.dataset.size || null;
-                const action = btn.dataset.action;
-                
-                if (action === "inc") updateQuantity(id, size, 1);
-                else if (action === "dec") updateQuantity(id, size, -1);
-                else removeFromCart(id, size);
-                
+                removeFromCart(id, size);
                 render();
             });
         });

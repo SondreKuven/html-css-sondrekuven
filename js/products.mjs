@@ -12,97 +12,109 @@ let allProducts = [];
 init();
 
 async function init() {
-    setMessage("Loading products...");
-    try {
-        allProducts = await fetchAllProducts();
-        setMessage("");
+  setMessage("Loading products...");
+  try {
+    allProducts = await fetchAllProducts();
+    setMessage("");
 
-        populateFilters(allProducts);
-        renderProducts(allProducts);
-        wireFilters();
-    } catch (err) {
-        setMessage(`Sorry - could not load products: ${err.message}`);
-    }
+    populateFilters(allProducts);
+    renderProducts(allProducts);
+    wireFilters();
+  } catch (err) {
+    setMessage(`Sorry - could not load products: ${err.message}`);
+  }
 }
 
 function wireFilters() {
-    [genderSelect, tagSelect, searchInput].forEach((el) => {
-        el.addEventListener("input", applyFilters);
-        el.addEventListener("change", applyFilters);
-    });
+  [genderSelect, tagSelect, searchInput].forEach((el) => {
+    el.addEventListener("input", applyFilters);
+    el.addEventListener("change", applyFilters);
+  });
 }
 
 function applyFilters() {
-    const gender = genderSelect.value;
-    const tag = tagSelect.value;
-    const q = searchInput.value.trim().toLowerCase();
+  const gender = genderSelect.value;
+  const tag = tagSelect.value;
+  const q = searchInput.value.trim().toLowerCase();
 
-    const filtered = allProducts.filter((p) => {
-        const matchesGender = !gender || p.gender === gender;
-        const matchesTag = !tag || (p.tags ?? []).includes(tag);
-        const matchesSearch = 
-            !q ||
-            p.title.toLowerCase().includes(q) ||
-            p.description.toLowerCase().includes(q);
-            
-        return matchesGender && matchesTag && matchesSearch;
-    });
+  const filtered = allProducts.filter((p) => {
+    const matchesGender = !gender || p.gender === gender;
+    const matchesTag = !tag || (p.tags ?? []).includes(tag);
+    const matchesSearch = !q || p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q);
 
-    renderProducts(filtered);
+    return matchesGender && matchesTag && matchesSearch;
+  });
 
-    if (filtered.length === 0) setMessage("No products match your filters.");
-    else setMessage("");
+  renderProducts(filtered);
+
+  if (filtered.length === 0) {
+    setMessage("No products match your filters.");
+  } else {
+    setMessage(`Showing ${filtered.length} products${filtered.length === 1 ? "" : "s"}.`);
+  }
 }
 
 function populateFilters(products) {
-    const genders = [...new Set(products.map((p) => p.gender).filter(Boolean))];
-    const tags = [...new Set(products.flatMap((p) => p.tags ?? []))];
+  const genders = [...new Set(products.map((p) => p.gender).filter(Boolean))];
+  const tags = [...new Set(products.flatMap((p) => p.tags ?? []))];
 
-    genders.forEach((g) => genderSelect.add(new Option(g, g)));
-    tags.forEach((t) => tagSelect.add(new Option(t, t)));
+  genders.forEach((g) => genderSelect.add(new Option(g, g)));
+  tags.forEach((t) => tagSelect.add(new Option(t, t)));
 }
 
 clearBtn.addEventListener("click", () => {
-    genderSelect.value = "";
-    tagSelect.value = "";
-    searchInput.value = "";
-    renderProducts(allProducts);
-    setMessage("");
+  genderSelect.value = "";
+  tagSelect.value = "";
+  searchInput.value = "";
+  renderProducts(allProducts);
+  setMessage("");
 });
 
 function renderProducts(products) {
-    grid.innerHTML = products
-        .map((p) => {
-            const price = (p.discountedPrice ?? p.price).toFixed(2);
-            const id = p.id ?? p._id;
-            return `
+  grid.innerHTML = products
+    .map((p) => {
+      const hasDiscount = p.discountedPrice && p.discountedPrice < p.price;
+      const priceHTML = hasDiscount
+        ? `
+            <p class="price">
+                <span class="old-price">${Number(p.price).toFixed(2)}€</span>
+                <span class="discounted-price">${Number(p.discountedPrice).toFixed(2)}€</span>
+            </p>
+        `
+        : `<p class="price">${Number(p.price).toFixed(2)}€</p>`;
+      const id = p.id ?? p._id;
+      return `
                 <article class="card product-card">
                     <div class="product-image">
                         <img src="${p.image.url}" alt="${escapeHtml(p.image.alt || p.title)}" />
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">${escapeHtml(p.title)}</h3>
-                        <p class="price">${price}€</p>
+                        <p class="price">${priceHTML}€</p>
                         <a href="product/index.html?id=${encodeURIComponent(id)}" class="btn btn-small">
-                            View products
+                            View details
                         </a>
                     </div>
                 </article>
             `;
-        })
-        .join("");
+    })
+    .join("");
 }
 
 function setMessage(text) {
-    message.textContent = text;
+  message.textContent = text;
 }
 
 function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, (c) => ({
+  return String(str).replace(
+    /[&<>"']/g,
+    (c) =>
+      ({
         "&": "&amp;",
         "<": "&lt;",
         ">": "&gt;",
         '"': "&quot;",
         "'": "&#039;",
-    }[c]));
+      }[c])
+  );
 }
