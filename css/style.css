@@ -104,7 +104,7 @@ a {
     height: 24px;
 }
 
-/* .cart-link {
+.cart-link {
     position: relative;
     display: inline-flex;
 }
@@ -123,7 +123,7 @@ a {
     font-weight: 700;
     display: grid;
     place-items: center;
-} */
+}
 
 .btn {
     display: inline-block;
@@ -290,7 +290,7 @@ a {
     color: #000000;
 }
 
-/* .old-price {
+.old-price {
     text-decoration: line-through;
     color: #5f5f5f;
     margin-right: 8px;
@@ -299,7 +299,7 @@ a {
 .sale-price {
     color: #8a1f11;
     font-weight: 700;
-} */
+}
 
 .price {
     margin: 0;
